@@ -1,0 +1,3 @@
+{
+	"ticker":  "AVP,CHK,BAC,PCG,SBNY,BMRN"
+}

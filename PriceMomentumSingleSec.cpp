@@ -21,6 +21,48 @@ PriceMomentumSingleSec::PriceMomentumSingleSec(const PriceMomentumSingleSec& obj
 
 }
 
+PriceMomentumSingleSec::PriceMomentumSingleSec(string ticker_)
+{
+    ticker = ticker_;
+
+    //read config data
+    std::cout<<"read config file"<<endl;
+    ifstream configFile;
+
+    pythonMutex.lock();
+    configFile.open("config.txt");
+
+//    configFile.seekg(0,configFile.end);
+//    int len = configFile.tellg();
+//    configFile.seekg(0,configFile.beg);
+//    char* buffer = new char[len];
+//    configFile.read(buffer,len);
+
+    std::string content( (std::istreambuf_iterator<char>(configFile) ),
+                       (std::istreambuf_iterator<char>()    ) );
+
+    configFile.close();
+    pythonMutex.unlock();
+
+    Document configs;
+    configs.Parse(content.c_str());
+    //std::cout<<content<<endl;
+   // delete[] buffer;
+    std::cout<<"close config file"<<endl;
+
+
+    //initialize configurable variables
+    //ticker = configs["ticker"].GetString();
+    chgspd_trg = configs["targetchangespeed"].GetFloat();
+    chgdur_trg = configs["targetchangeduration"].GetFloat();
+    retTrg = configs["targetreturn"].GetFloat();
+    timeWindowForExit = configs["timewindowforexit"].GetInt();
+
+    //instrumentId = pyRobinAPI.GetInstrument(ticker);
+    posStatus = ReadyForNewTrade;
+
+}
+
 void PriceMomentumSingleSec::StgSta()
 {
 }
@@ -28,23 +70,19 @@ void PriceMomentumSingleSec::StgSta()
 void PriceMomentumSingleSec::Run()
 {
     std::thread strategyMain(&PriceMomentumSingleSec::ExecTrade, this);
-    std::thread strategySetMarketData(&PriceMomentumSingleSec::SetMktData, this);
-    std::thread strategyOpenNewPosition(&PriceMomentumSingleSec::OpenNewPosition, this);
-    std::thread strategyCloseLongPosition(&PriceMomentumSingleSec::CloseLongPosition, this);
+    std::thread strategyFetchMktData(&PriceMomentumSingleSec::FetchMktData, this);
+    //std::thread strategyOpenNewPosition(&PriceMomentumSingleSec::OpenNewPosition, this);
+    //std::thread strategyCloseLongPosition(&PriceMomentumSingleSec::CloseLongPosition, this);
 
     strategyMain.join();
-    strategySetMarketData.join();
-    strategyOpenNewPosition.join();
-    strategyCloseLongPosition.join();
+    strategyFetchMktData.join();
+    //strategyOpenNewPosition.join();
+    //strategyCloseLongPosition.join();
 
 }
 
-void PriceMomentumSingleSec::ExecTrade()
-{
-    while(mktData.size() < 2)
-    {
-        usleep(3000000);
-    }
+void PriceMomentumSingleSec::ExecTrade(){
+    while(mktData.size() <= 2){ usleep(10000000); }
 
 	string date_benchM = "";
 	string date = "";
@@ -54,10 +92,11 @@ void PriceMomentumSingleSec::ExecTrade()
 	float curHigh = 0;
 	float curLow = 0;
 	float price = 0;
-	float priceBase = 0;
+	float price_TrendBegin = 0;
 	long int preTimeStamp = 0;
-	long int timeStampBase = 0;
+	long int timeStamp_trendBegin = 0;
 	long int timeStamp;
+	long int timeStamp_secondLast;
 	long int preCriticalTS = 0;
 	long int curCriticalTS = 0;
     CriticalPoint highLow = Neutral;
@@ -69,123 +108,139 @@ void PriceMomentumSingleSec::ExecTrade()
     float prePrice = 0.0;
     float entryOrderPrice = 0;
     float buyingPower = 0;
-
+    ofstream tradeLog;
     list<MarketDataPoint>::iterator it_first = mktData.begin();
-    priceBase = it_first->GetQuotePrice();
+    list<MarketDataPoint>::iterator it_secondLast;
+    list<MarketDataPoint>::iterator it_last;
+    CriticalPoint highLow_secondLast = Neutral;
+    float price_SecondLast = 0.0;
+    string fileName = ticker + "tradeLog.txt";
+
+    tradeLog.open(fileName,ios::app);
+    price_TrendBegin = it_first->GetQuotePrice();
     prePrice = it_first->GetQuotePrice();
-    timeStampBase = it_first->GetTimeStamp();
+    timeStamp_trendBegin = it_first->GetTimeStamp();
     date_benchM = (it_first->GetTimeStr()).substr(0,10);
-    preLow = priceBase;
-    preHigh = priceBase;
+    preLow = price_TrendBegin;
+    preHigh = price_TrendBegin;
+
+    //tradeLog<<timeStamp<<";"<<price_TrendBegin<<";"<<curTrend<<";"<<preTrend<<";"<<preHigh<<";"<<preLow<<";"<<preCriticalTS<<";"<<preTimeStamp<<";"<<price_TrendBegin<<"\n";
+    //tradeLog<<std::flush;
 
     list<MarketDataPoint>::iterator it_second = std::next(it_first);
-    if(it_second->GetQuotePrice() >= prePrice)
-    {
+    if(it_second->GetQuotePrice() >= prePrice){
         preTrend = "UP";
         curTrend = "UP";
         prePrice = it_second->GetQuotePrice();
     }
-    else if(it_second->GetQuotePrice() <= prePrice)
-    {
+    else if(it_second->GetQuotePrice() <= prePrice){
         preTrend = "DOWN";
         curTrend = "DOWN";
         prePrice = it_second->GetQuotePrice();
     }
     preTimeStamp = it_second->GetTimeStamp();
 
+    //tradeLog<<it_second->GetTimeStamp()<<";"<<it_second->GetQuotePrice()<<";"<<curTrend<<";"<<preTrend<<";"<<preHigh<<";"<<preLow<<";"<<preCriticalTS<<";"<<preTimeStamp<<";"<<price_TrendBegin<<"\n";
+    //tradeLog<<std::flush;
 
-	while(1)
-	{
-	    //SetMktData();
-	    //usleep(30000000);
-	    auto it = prev(mktData.end());
-        dateTime = it->GetTimeStr();
+	while(1){
+	    usleep(3000000);
+        //auto mkIt = std::prev(mktData.end());
+	    //MarketDataPoint it = mktData.back();
+	    it_secondLast = prev(prev(mktData.end()));
+        highLow_secondLast = it_secondLast->GetHighLow();
+        price_SecondLast = it_secondLast->GetQuotePrice();
+        timeStamp_secondLast = it_secondLast->GetTimeStamp();
+        if(highLow_secondLast == 1){
+                preHigh = price_SecondLast;
+                preCriticalTS = timeStamp_secondLast;
+        }
+        else if(highLow_secondLast == -1){
+                preLow = price_SecondLast;
+                preCriticalTS = timeStamp_secondLast;
+        }
+	    it_last = std::prev(mktData.end());
+        dateTime = it_last->GetTimeStr();
         date = dateTime.substr(0,10);
-        timeStamp = it->GetTimeStamp();
-        highLow = it->GetHighLow();
-        price = it->GetQuotePrice();
-        buyingPower = pyRobinAPI.GetBuyingPower();
+        timeStamp = it_last->GetTimeStamp();
+        highLow = it_last->GetHighLow();
+        price = it_last->GetQuotePrice();
+        buyingPower = 10;
 
-
-        //if there is a new market data point
-        if(timeStamp > preTimeStamp)
-        {
-            if((highLow == 1 && price > preHigh))
-            {
+        if(timeStamp > preTimeStamp){
+            //if price is between preHigh and preLow, the curTrend will stay what it is so far.
+            if(price >= preHigh){
                 curTrend = "UP";
-                curHigh = price;
-                curCriticalTS = timeStamp;
+                //curHigh = price;
+                //curCriticalTS = timeStamp;
             }
-            else if(highLow == -1 && price > preLow)
-            {
-                curTrend = "UP";
-                curLow = price;
-                curCriticalTS = timeStamp;
-            }
-            else if (highLow == 1 && price < preHigh)
-            {
+            //else if(highLow == -1 && price > preLow){
+                //curTrend = "UP";
+                //curLow = price;
+                //curCriticalTS = timeStamp;
+            //}
+            //else if (highLow == 1 && price < preHigh){
+               // curTrend = "DOWN";
+               // curHigh = price;
+                //curCriticalTS = timeStamp;
+           // }
+            else if (price <= preLow){
                 curTrend = "DOWN";
-                curHigh = price;
-                curCriticalTS = timeStamp;
+                //curLow = price;
+                //curCriticalTS = timeStamp;
             }
-            else if (highLow == -1 && price < preLow)
-            {
-                curTrend = "DOWN";
-                curLow = price;
-                curCriticalTS = timeStamp;
-            }
+            dur = timeStamp - timeStamp_trendBegin;
+            chgspd = (price - price_TrendBegin)/price_TrendBegin/float(dur);
 
-            dur = timeStamp - timeStampBase;
-            chgspd = (price - priceBase)/priceBase/float(dur);
-
+            tradeLog<<timeStamp<<";"<<price<<";"<<curTrend<<";"<<preTrend<<";"<<preHigh<<";"<<preLow<<";"<<preCriticalTS<<";"<<preTimeStamp<<";"<<price_TrendBegin<<"\n";
+            tradeLog<<std::flush;
             //assert(preTrend != "" && curTrend != "");
-
-            if(curTrend == preTrend && curTrend == "UP" && dur > chgdur_trg && chgspd > chgspd_trg && posStatus == ReadyForNewTrade && buyingPower >= price * util::sharesEachTrade)
-            {
+            if(curTrend == preTrend && curTrend == "UP" && dur > chgdur_trg && chgspd > chgspd_trg && posStatus == ReadyForNewTrade && buyingPower >= price * util::sharesEachTrade){
                 //OpenNewPosition("buy","limit","gfd","immediate",price);
                 side = "buy";
                 posStatus = ProcessingNewTrade;
                 orderPrice = price;
+                tradeLog<<timeStamp<<";"<<side<<";"<<price<<util::sharesEachTrade<<"\n";
+                tradeLog<<std::flush;
             }
-            else if(curTrend == preTrend && curTrend == "DOWN" && dur > chgdur_trg && chgspd < -chgspd_trg)
-            {
+            else if(curTrend == preTrend && curTrend == "DOWN" && dur > chgdur_trg && chgspd < -chgspd_trg){
                 //short selling is currently not available
                 //entryVect.push_back(std::make_tuple("Short", dateTime, timeStamp, price,false));
+                tradeLog<<timeStamp<<";"<<"short"<<";"<<price<<util::sharesEachTrade<<"\n";
+                tradeLog<<std::flush;
             }
-            else if(highLow == 0 && dur > chgdur_trg && chgspd > chgspd_trg && posStatus == ReadyForNewTrade && buyingPower >= price * util::sharesEachTrade)
-            {
+            //else if(highLow == 0 && dur > chgdur_trg && chgspd > chgspd_trg && posStatus == ReadyForNewTrade && buyingPower >= price * util::sharesEachTrade){
                 //OpenNewPosition("buy","limit","gfd","immediate",price);
-                side = "buy";
-                posStatus = ProcessingNewTrade;
-                orderPrice = price;
-
-            }
-            else if(highLow == 0 && dur > chgdur_trg && chgspd < -chgspd_trg)
-            {
+                //side = "buy";
+                //posStatus = ProcessingNewTrade;
+                //orderPrice = price;
+                //tradeLog<<timeStamp<<";"<<side<<";"<<price<<util::sharesEachTrade<<"\n";
+                //tradeLog.close();
+            //}
+            //else if(highLow == 0 && dur > chgdur_trg && chgspd < -chgspd_trg){
                 //short selling is currently not available
                 //entryVect.push_back(std::make_tuple("Short", dateTime, timeStamp, price,false));
-            }
-            else if(preTrend != curTrend && curTrend == "UP")
-            {
-                priceBase = preLow;
-                preHigh = priceBase;
-                timeStampBase = preCriticalTS;
+            //}
+            else if(preTrend != curTrend && curTrend == "UP"){
+                price_TrendBegin = preLow;
+                //preHigh = price_TrendBegin;
+                timeStamp_trendBegin = preCriticalTS;
                 preTrend = curTrend;
             }
-            else if(preTrend != curTrend && curTrend == "DOWN")
-            {
-                priceBase = preHigh;
-                preLow = priceBase;
-                timeStampBase = preCriticalTS;
+            else if(preTrend != curTrend && curTrend == "DOWN"){
+                price_TrendBegin = preHigh;
+                //preLow = price_TrendBegin;
+                timeStamp_trendBegin = preCriticalTS;
                 preTrend = curTrend;
             }
 
-            preCriticalTS = curCriticalTS;
-            preHigh = curHigh;
-            preLow = curLow;
-
+            //preCriticalTS = curCriticalTS;
+            //preHigh = curHigh;
+            //preLow = curLow;
+            preTimeStamp = timeStamp;
         }
 	}
+	tradeLog.close();
 }
 
 void PriceMomentumSingleSec::OpenNewPosition()
@@ -339,32 +394,37 @@ void PriceMomentumSingleSec::CloseLongPosition()
     }
 }
 
-void PriceMomentumSingleSec::SetMktData()
-{
-
+void PriceMomentumSingleSec::FetchMktData(){
     list<MarketDataPoint>::iterator lastIt;
     list<MarketDataPoint>::iterator secondLastIt;
+    float curQuote;
     float lastQuote;
     float secondLastQuote;
-    long int lastTimestamp;
-    long int secondLastTimestamp;
+    long int curTimeStamp = 0;
+    long int lastTimestamp = 0;
+    long int secondLastTimestamp = 0;
     long int lastCriticalTimestamp = 0;
+    long int criticalPointSpan = 0;
     bool newData = false;
-    int len = mktData.size();
-    float curQuote;
-    long int curTimeStamp;
+    int mktDataLen = mktData.size();
     int hour = 0;
     int minute = 0;
     int sec  = 0;
     string dateTime = "";
     unique_ptr<Document> quotes(new rapidjson::Document());
     MarketDataPoint dataP;
+    ofstream dataLog;
+    dataLog.open("data.txt", ios::app);
 
+    while(1){
+        quotes.reset();
 
-    while(1)
-    {   quotes.reset();
+        //pythonMutex.lock();
+        std::lock_guard<std::mutex> lock(pythonMutex);
         quotes = pyRobinAPI.GetQuote(ticker);
-        len = mktData.size();
+        //pythonMutex.unlock();
+
+        mktDataLen = mktData.size();
         curQuote = stof(quotes->operator[]("last_trade_price").GetString());
         dateTime = quotes->operator[]("updated_at").GetString();
         hour = stoi(dateTime.substr(11,2));
@@ -372,94 +432,193 @@ void PriceMomentumSingleSec::SetMktData()
         sec = stoi(dateTime.substr(17,2));
         curTimeStamp = hour * 3600 + minute * 60 + sec;
 
-
-        /*if there is already data in the list, not include the new data point if it has the same
-        timestamp of last data point in existing data list. */
-        if(len != 0)
-        {
+        //If there is already data in the list, not include the new data point if it has the same
+        //timestamp as last data point in existing data list.
+        if(mktDataLen > 2){
             lastIt  = prev(mktData.end());
             lastTimestamp = lastIt->GetTimeStamp();
-            if(curTimeStamp > lastTimestamp)
-            {
-                newData = true;
 
-                //MarketDataPoint dataP;
+            if(curTimeStamp > lastTimestamp + 50){
+                newData = true;
                 dataP.SetQuotePrice(curQuote);
                 dataP.SetTimeStamp(curTimeStamp);
                 dataP.SetTimeStr("");
                 dataP.SetHighLow(Neutral);
-                mktData.push_back(dataP);
-
-                //std::cout<<curTimeStamp<<" "<<curQuote<<std::endl;
             }
-
         }
-        //if there is no data in the list, always add the first data.
-        else if(len == 0)
-        {
-            //MarketDataPoint dataP;
+        //If there is no data in the list, always add the first data.
+        else if(mktDataLen <= 2 && curTimeStamp > lastTimestamp + 50){
             dataP.SetQuotePrice(curQuote);
             dataP.SetTimeStamp(curTimeStamp);
             dataP.SetTimeStr("");
             dataP.SetHighLow(Neutral);
             mktData.push_back(dataP);
+            lastTimestamp = curTimeStamp;
+            dataLog<<curTimeStamp<<";"<<curQuote<<";"<<0<<"\n";
+            dataLog<<std::flush;
         }
 
-        /*
-        If there are at least three data points in the market data list,
-        update the high/low of second last data point. The high/low of last
-        data point is always neutral.
-        */
-        if(len > 2 && newData == true)
-        {
-            lastIt  = prev(mktData.end());
+        //If there are at least three data points in the market data list,
+        //update the high/low of second last data point. The high/low of last
+        //data point is always neutral.
+        if(mktDataLen > 2 && newData == true){
             secondLastIt = prev(lastIt);
             lastQuote = lastIt->GetQuotePrice();
             secondLastQuote = secondLastIt->GetQuotePrice();
             lastTimestamp = lastIt->GetTimeStamp();
             secondLastTimestamp = secondLastIt->GetTimeStamp();
+            criticalPointSpan = lastTimestamp - lastCriticalTimestamp;
 
-            if (curQuote >= lastQuote && lastQuote < secondLastQuote && lastTimestamp - lastCriticalTimestamp > 50)
-            {
+            if (curQuote >= lastQuote && lastQuote < secondLastQuote && criticalPointSpan > 50){
                 lastIt->SetHighLow(Low);
                 lastCriticalTimestamp = curTimeStamp;
             }
-            else if (curQuote > lastQuote && lastQuote <= secondLastQuote && lastTimestamp - lastCriticalTimestamp > 50)
-            {
+            else if (curQuote > lastQuote && lastQuote <= secondLastQuote && criticalPointSpan > 50){
                 lastIt->SetHighLow(Low);
                 lastCriticalTimestamp = curTimeStamp;
             }
-            else if (curQuote < lastQuote && lastQuote >= secondLastQuote && lastTimestamp - lastCriticalTimestamp > 50)
-            {
+            else if (curQuote < lastQuote && lastQuote >= secondLastQuote && criticalPointSpan > 50){
                 lastIt->SetHighLow(High);
                 lastCriticalTimestamp = curTimeStamp;
             }
-            else if (curQuote <= lastQuote && lastQuote > secondLastQuote && lastTimestamp - lastCriticalTimestamp > 50)
-            {
+            else if (curQuote <= lastQuote && lastQuote > secondLastQuote && criticalPointSpan > 50){
                 lastIt->SetHighLow(High);
                 lastCriticalTimestamp = curTimeStamp;
             }
+            mktData.push_back(dataP);
+            dataLog<<lastTimestamp<<";"<<lastQuote<<";"<<lastIt->GetHighLow()<<"\n";
+            dataLog<<std::flush;
+            newData = false;
         }
-
-        /* sleep for 60 seconds before fetching a new market data.
-        Due to Robinhood constraint, only one data request can be made
-        every 3 seconds. */
-        usleep(3000000);
+        //Sleep for 60 seconds before fetching a new market data.
+        //Due to Robinhood constraint, only one data request can be made
+        //every 40 seconds.
+        usleep(10000000);
     }
-
+    dataLog.close();
 }
 
-
-PriceMomentumSingleSec::~PriceMomentumSingleSec()
-{
+PriceMomentumSingleSec::~PriceMomentumSingleSec(){
     log.close();
     //cout<<"********************strategy destroy*************************"<<endl;
 }
 
 
-	void PriceMomentumSingleSec::DetectStg() {}
-    void PriceMomentumSingleSec::Output() {}
-    void PriceMomentumSingleSec::CleanEntryPoint(){}
-    void PriceMomentumSingleSec::CleanMktData() {}
+void PriceMomentumSingleSec::DetectStg() {}
+void PriceMomentumSingleSec::Output() {}
+void PriceMomentumSingleSec::CleanEntryPoint(){}
+void PriceMomentumSingleSec::CleanMktData() {}
+
+void PriceMomentumSingleSec::FetchMktData2(){
+    list<MarketDataPoint>::iterator lastIt;
+    list<MarketDataPoint>::iterator secondLastIt;
+    float curQuote;
+    float lastQuote;
+    float secondLastQuote;
+    long int curTimeStamp;
+    long int lastTimestamp = 0;
+    long int secondLastTimestamp;
+    long int lastCriticalTimestamp = 0;
+    long int criticalPointSpan = 0;
+    bool newData = false;
+    int mktDataLen = mktData.size();
+    int hour = 0;
+    int minute = 0;
+    int sec  = 0;
+    string dateTime = "";
+    unique_ptr<Document> quotes(new rapidjson::Document());
+    MarketDataPoint dataP;
+    string fileName = ticker + "data.txt";
+    ofstream dataLog;
+    dataLog.open(fileName, ios::app);
+    ifstream file;
+    file.open("AVP.csv");
 
 
+    while(!file.eof()){
+        string line;
+        getline(file, line);
+        //std::cout<<line<<endl;
+        vector<string> lineSplit;
+        boost::split(lineSplit, line, boost::is_any_of(","));
+        mktDataLen = mktData.size();
+        //curQuote = stof(quotes->operator[]("last_trade_price").GetString());
+        curQuote = stof(lineSplit[4]);
+        //dateTime = quotes->operator[]("updated_at").GetString();
+        //hour = stoi(dateTime.substr(11,2));
+        //minute = stoi(dateTime.substr(14,2));
+       // sec = stoi(dateTime.substr(17,2));
+        curTimeStamp = stoi(lineSplit[0]);
+              //cout<<curTimeStamp<<endl;
+
+        //If there is already data in the list, not include the new data point if it has the same
+        //timestamp as last data point in existing data list.
+        if(mktDataLen > 2){
+            lastIt  = prev(mktData.end());
+            lastTimestamp = lastIt->GetTimeStamp();
+
+            if(curTimeStamp > lastTimestamp){
+                   //cout<<"here"<<endl;
+                newData = true;
+                dataP.SetQuotePrice(curQuote);
+                dataP.SetTimeStamp(curTimeStamp);
+                dataP.SetTimeStr("");
+                dataP.SetHighLow(Neutral);
+            }
+        }
+        //If there is no data in the list, always add the first data.
+        else if(mktDataLen <= 2){
+            dataP.SetQuotePrice(curQuote);
+            dataP.SetTimeStamp(curTimeStamp);
+            dataP.SetTimeStr("");
+            dataP.SetHighLow(Neutral);
+            mktData.push_back(dataP);
+            //dataLog<<curTimeStamp<<";"<<curQuote<<"\n";
+            //dataLog<<std::flush;
+            dataLog<<curTimeStamp<<";"<<curQuote<<";"<<0<<"\n";
+            dataLog<<std::flush;
+        }
+
+        //If there are at least three data points in the market data list,
+        //update the high/low of second last data point. The high/low of last
+        //data point is always neutral.
+        //std::cout<<mktDataLen<<endl;
+        if(mktDataLen > 2 && newData == true){
+                              //std::cout<<123<<endl;
+            secondLastIt = prev(lastIt);
+            lastQuote = lastIt->GetQuotePrice();
+            secondLastQuote = secondLastIt->GetQuotePrice();
+            lastTimestamp = lastIt->GetTimeStamp();
+            secondLastTimestamp = secondLastIt->GetTimeStamp();
+            criticalPointSpan = lastTimestamp - lastCriticalTimestamp;
+
+            if (curQuote >= lastQuote && lastQuote < secondLastQuote && criticalPointSpan > 50){
+                lastIt->SetHighLow(Low);
+                lastCriticalTimestamp = curTimeStamp;
+            }
+            else if (curQuote > lastQuote && lastQuote <= secondLastQuote && criticalPointSpan > 50){
+                lastIt->SetHighLow(Low);
+                lastCriticalTimestamp = curTimeStamp;
+            }
+            else if (curQuote < lastQuote && lastQuote >= secondLastQuote && criticalPointSpan > 50){
+                lastIt->SetHighLow(High);
+                lastCriticalTimestamp = curTimeStamp;
+            }
+            else if (curQuote <= lastQuote && lastQuote > secondLastQuote && criticalPointSpan > 50){
+                lastIt->SetHighLow(High);
+                lastCriticalTimestamp = curTimeStamp;
+            }
+
+            //dataLog<<curTimeStamp<<";"<<curQuote<<"\n";
+           // dataLog<<std::flush;
+           dataLog<<lastTimestamp<<";"<<lastQuote<<";"<<lastIt->GetHighLow()<<"\n";
+           dataLog<<std::flush;
+           mktData.push_back(dataP);
+        }
+        //Sleep for 60 seconds before fetching a new market data.
+        //Due to Robinhood constraint, only one data request can be made
+        //every 3 seconds.
+        usleep(10000000);
+    }
+    dataLog.close();
+}

@@ -13,7 +13,7 @@ namespace strategy
 			virtual void StgSta() = 0;
 			virtual void Run() = 0;
 			virtual void Output() = 0;
-			virtual void SetMktData() = 0;
+			virtual void FetchMktData() = 0;
 			virtual void CleanEntryPoint() = 0;
 			virtual void CleanMktData() = 0;
 			virtual void ExecTrade() = 0;

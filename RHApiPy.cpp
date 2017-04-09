@@ -52,6 +52,7 @@ namespace Robinhood
         const char* result;
         std::string resStr;
 
+        //mutex_.lock();
         if (PyCallable_Check(pFunc))
         {
             pValue=Py_BuildValue("(s)",ticker.c_str());
@@ -64,7 +65,7 @@ namespace Robinhood
         {
             PyErr_Print();
         }
-
+        //mutex_.unlock();
         resStr = std::string(result);
         resStr = resStr.substr(1, resStr.size() - 2);
         /*

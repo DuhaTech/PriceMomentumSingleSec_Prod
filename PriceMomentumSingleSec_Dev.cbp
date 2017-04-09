@@ -42,7 +42,6 @@
 					<Add library="../../../../usr/lib/x86_64-linux-gnu/libpython2.7.so" />
 					<Add library="../../../../usr/lib/x86_64-linux-gnu/libpthread.so" />
 					<Add library="../../../../usr/lib/x86_64-linux-gnu/libboost_thread.so" />
-					<Add library="../../../../usr/lib/x86_64-linux-gnu/libpthread.so" />
 					<Add directory="../../Downloads/boost_1_58_0/bin.v2/libs/system/build/gcc-4.8/release/link-static/threading-multi" />
 					<Add directory="../../Downloads/boost_1_58_0/bin.v2/libs/thread/build/gcc-4.8/release/link-static/threading-multi" />
 					<Add directory="../../Downloads/boost_1_58_0/bin.v2/libs/context/build/gcc-4.8/release/link-static/threading-multi" />
@@ -76,6 +75,8 @@
 		<Unit filename="PriceMomentumSingleSec.hpp" />
 		<Unit filename="RHApiCPP.cpp" />
 		<Unit filename="RHApiCPP.hpp" />
+		<Unit filename="RHApiCPP2.cpp" />
+		<Unit filename="RHApiCPP2.hpp" />
 		<Unit filename="RHApiPy.cpp" />
 		<Unit filename="RHApiPy.hpp" />
 		<Unit filename="RawMarketDataPoint.cpp" />

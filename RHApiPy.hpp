@@ -11,6 +11,7 @@
 #include "RHApiPy.hpp"
 #include "rapidjson/document.h"
 #include <string>
+#include <mutex>
 
 using namespace rapidjson;
 
@@ -27,6 +28,7 @@ namespace Robinhood
              ~RHApiPy();
         private:
                PyObject *pName, *pModule, *pDict, *pFunc,*pValue, *presult, *pFunc_inst, *pFunc_buyingPower;
+                std::mutex mutex_;
     };
 }
 #endif // PYROBINAPI_HPP

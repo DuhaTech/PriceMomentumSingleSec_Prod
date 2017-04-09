@@ -18673,7 +18673,7 @@
 1465894181 /usr/include/boost/config/posix_features.hpp
 	<unistd.h>
 
-1479336220 /usr/include/unistd.h
+1490126450 /usr/include/unistd.h
 	<features.h>
 	<bits/posix_opt.h>
 	<bits/environments.h>
@@ -18683,35 +18683,35 @@
 	<getopt.h>
 	<bits/unistd.h>
 
-1479336182 /usr/include/features.h
+1490126382 /usr/include/features.h
 	<stdc-predef.h>
 	<sys/cdefs.h>
 	<gnu/stubs.h>
 
-1479336182 /usr/include/stdc-predef.h
+1490126382 /usr/include/stdc-predef.h
 
-1479336220 /usr/include/getopt.h
+1490126450 /usr/include/getopt.h
 	<ctype.h>
 
-1479336202 /usr/include/ctype.h
+1490126415 /usr/include/ctype.h
 	<features.h>
 	<bits/types.h>
 	<endian.h>
 	<xlocale.h>
 
-1479336217 /usr/include/endian.h
+1490126448 /usr/include/endian.h
 	<features.h>
 	<bits/endian.h>
 	<bits/byteswap.h>
 
-1479336184 /usr/include/xlocale.h
+1490126385 /usr/include/xlocale.h
 
 1465894181 /usr/include/boost/config/suffix.hpp
 	<limits.h>
 	<cstddef>
 	<typeinfo>
 
-1479336182 /usr/include/limits.h
+1490126382 /usr/include/limits.h
 	<features.h>
 	<bits/wordsize.h>
 	<bits/posix1_lim.h>
@@ -18907,7 +18907,7 @@
 	<boost/asio/detail/push_options.hpp>
 	<boost/asio/detail/pop_options.hpp>
 
-1479336208 /usr/include/stdlib.h
+1490126419 /usr/include/stdlib.h
 	<features.h>
 	<stddef.h>
 	<bits/waitflags.h>
@@ -18920,7 +18920,7 @@
 	<bits/stdlib.h>
 	<bits/stdlib-ldbl.h>
 
-1479336208 /usr/include/alloca.h
+1490126419 /usr/include/alloca.h
 	<features.h>
 	<stddef.h>
 
@@ -18937,7 +18937,7 @@
 	<bits/stat.h>
 	<bits/fcntl2.h>
 
-1479336219 /usr/include/time.h
+1490126449 /usr/include/time.h
 	<features.h>
 	<stddef.h>
 	<bits/time.h>
@@ -18957,7 +18957,7 @@
 	<endian.h>
 	<bits/byteswap.h>
 
-1479336208 /usr/include/stdint.h
+1490126419 /usr/include/stdint.h
 	<features.h>
 	<bits/wchar.h>
 	<bits/wordsize.h>
@@ -19042,7 +19042,7 @@
 	<stddef.h>
 	<limits.h>
 
-1479336208 /usr/include/inttypes.h
+1490126419 /usr/include/inttypes.h
 	<features.h>
 	<stdint.h>
 	<stddef.h>
@@ -19059,7 +19059,7 @@
 
 1465894164 /usr/include/boost/current_function.hpp
 
-1479336202 /usr/include/assert.h
+1490126415 /usr/include/assert.h
 	<features.h>
 
 1403323552 /usr/include/boost/operators.hpp
@@ -19139,7 +19139,7 @@
 	<boost/asio/detail/pop_options.hpp>
 	<boost/asio/detail/impl/posix_tss_ptr.ipp>
 
-1479336239 /usr/include/pthread.h
+1490126463 /usr/include/pthread.h
 	<features.h>
 	<endian.h>
 	<sched.h>
@@ -19148,7 +19148,7 @@
 	<bits/setjmp.h>
 	<bits/wordsize.h>
 
-1479336220 /usr/include/sched.h
+1490126450 /usr/include/sched.h
 	<features.h>
 	<bits/types.h>
 	<stddef.h>
@@ -21322,7 +21322,7 @@
 	<limits.h>
 	<wchar.h>
 
-1479336218 /usr/include/wchar.h
+1490126448 /usr/include/wchar.h
 	<features.h>
 	<stdio.h>
 	<stdarg.h>
@@ -21336,7 +21336,7 @@
 	<bits/wchar2.h>
 	<bits/wchar-ldbl.h>
 
-1479336216 /usr/include/stdio.h
+1490126432 /usr/include/stdio.h
 	<features.h>
 	<stddef.h>
 	<bits/types.h>
@@ -21349,25 +21349,25 @@
 	<bits/stdio2.h>
 	<bits/stdio-ldbl.h>
 
-1479336216 /usr/include/libio.h
+1490126432 /usr/include/libio.h
 	<_G_config.h>
 	<stdarg.h>
 	<sys/cdefs.h>
 	<shlib-compat.h>
 	<bits/libio-ldbl.h>
 
-1479336216 /usr/include/_G_config.h
+1490126432 /usr/include/_G_config.h
 	<bits/types.h>
 	<stddef.h>
 	<wchar.h>
 	<gconv.h>
 
-1479336183 /usr/include/gconv.h
+1490126383 /usr/include/gconv.h
 	<features.h>
 	<wchar.h>
 	<stddef.h>
 
-1479336234 /usr/include/wctype.h
+1490126459 /usr/include/wctype.h
 	<features.h>
 	<bits/types.h>
 	<wchar.h>
@@ -23595,7 +23595,7 @@
 	<boost/asio/detail/push_options.hpp>
 	<boost/asio/detail/pop_options.hpp>
 
-1479336208 /usr/include/signal.h
+1490126419 /usr/include/signal.h
 	<features.h>
 	<bits/sigset.h>
 	<bits/types.h>
@@ -24405,7 +24405,7 @@
 	<boost/asio/impl/serial_port_base.hpp>
 	<boost/asio/impl/serial_port_base.ipp>
 
-1479336232 /usr/include/termios.h
+1490126451 /usr/include/termios.h
 	<features.h>
 	<bits/types.h>
 	<bits/termios.h>
@@ -26199,7 +26199,7 @@
 	<openssl/x509v3.h>
 	<boost/asio/detail/socket_types.hpp>
 
-1479336217 /usr/include/string.h
+1490126447 /usr/include/string.h
 	<features.h>
 	<stddef.h>
 	<xlocale.h>
@@ -26207,7 +26207,7 @@
 	<bits/string2.h>
 	<bits/string3.h>
 
-1479336208 /usr/include/errno.h
+1490126419 /usr/include/errno.h
 	<features.h>
 	<bits/errno.h>
 
@@ -35852,7 +35852,7 @@
 	<ctype.h>
 	<wctype.h>
 
-1479336205 /usr/include/math.h
+1490126417 /usr/include/math.h
 	<features.h>
 	<bits/math-vector.h>
 	<bits/huge_val.h>
@@ -35995,7 +35995,7 @@
 	<setjmp.h>
 	<math.h>
 
-1479336208 /usr/include/setjmp.h
+1490126419 /usr/include/setjmp.h
 	<features.h>
 	<bits/setjmp.h>
 	<bits/sigset.h>
@@ -39216,7 +39216,7 @@
 	"RawMarketDataPoint.hpp"
 	"BrokerUtil.hpp"
 
-1479336219 /usr/include/dirent.h
+1490126449 /usr/include/dirent.h
 	<features.h>
 	<bits/types.h>
 	<bits/dirent.h>
@@ -39243,7 +39243,7 @@
 
 1484451444 /home/colin/Development/PriceMomentumSingleSec_Dev/BrokerUtil.hpp
 
-1486355807 source:/home/colin/Development/PriceMomentumSingleSec_Dev/main.cpp
+1491191196 source:/home/colin/Development/PriceMomentumSingleSec_Dev/main.cpp
 	<stdio.h>
 	<stdlib.h>
 	<cstring>
@@ -39251,6 +39251,7 @@
 	<iostream>
 	<memory>
 	<fstream>
+	"RHApiCPP2.hpp"
 	"RHApiCPP.hpp"
 	<Python.h>
 	"RHApiPy.hpp"
@@ -39288,10 +39289,10 @@
 
 1483323424 /home/colin/Development/PriceMomentumSingleSec_Dev/RawMarketDataPoint.hpp
 
-1486654738 source:/home/colin/Development/PriceMomentumSingleSec_Dev/PriceMomentumSingleSec.cpp
+1491187364 source:/home/colin/Development/PriceMomentumSingleSec_Dev/PriceMomentumSingleSec.cpp
 	"PriceMomentumSingleSec.hpp"
 
-1484805202 /home/colin/Development/PriceMomentumSingleSec_Dev/PriceMomentumSingleSec.hpp
+1491190660 /home/colin/Development/PriceMomentumSingleSec_Dev/PriceMomentumSingleSec.hpp
 	<vector>
 	<deque>
 	<tuple>
@@ -39320,10 +39321,9 @@
 	"RHApiPy.hpp"
 	"rapidjson/document.h"
 	<atomic>
-	<mutex>
 	<thread>
 
-1483416573 /home/colin/Development/PriceMomentumSingleSec_Dev/Strategy.hpp
+1487532721 /home/colin/Development/PriceMomentumSingleSec_Dev/Strategy.hpp
 	<string>
 
 1484451845 /home/colin/Development/PriceMomentumSingleSec_Dev/RHApiCPP.hpp
@@ -39441,7 +39441,7 @@
 1483901520 /home/colin/Development/PriceMomentumSingleSec_Dev/include/rapidjson/internal/strfunc.h
 	"../stream.h"
 
-1484628140 /home/colin/Development/PriceMomentumSingleSec_Dev/RHApiPy.hpp
+1491184976 /home/colin/Development/PriceMomentumSingleSec_Dev/RHApiPy.hpp
 	<memory>
 	<iostream>
 	<Python.h>
@@ -39452,10 +39452,27 @@
 	"RHApiPy.hpp"
 	"rapidjson/document.h"
 	<string>
+	<mutex>
 
-1484629534 source:/home/colin/Development/PriceMomentumSingleSec_Dev/RHApiCPP.cpp
+1491189900 source:/home/colin/Development/PriceMomentumSingleSec_Dev/RHApiCPP.cpp
 	"RHApiCPP.hpp"
 
-1486354624 source:/home/colin/Development/PriceMomentumSingleSec_Dev/RHApiPy.cpp
+1491187321 source:/home/colin/Development/PriceMomentumSingleSec_Dev/RHApiPy.cpp
 	"RHApiPy.hpp"
+
+1491190877 /home/colin/Development/PriceMomentumSingleSec_Dev/RHApiCPP2.hpp
+	<stdio.h>
+	<stdlib.h>
+	<cstring>
+	<curl/curl.h>
+	<iostream>
+	<memory>
+	<fstream>
+	<boost/algorithm/string/regex.hpp>
+	<boost/algorithm/string.hpp>
+	<rapidjson/document.h>
+	"RHApiCPP.hpp"
+
+1491191127 source:/home/colin/Development/PriceMomentumSingleSec_Dev/RHApiCPP2.cpp
+	"RHApiCPP2.hpp"
 

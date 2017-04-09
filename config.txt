@@ -1,0 +1,10 @@
+{
+	"ticker": "AVP,CHK,BAC",
+	"targetchangespeed": 0.000007778,
+	"targetchangeduration": 600,
+	"targetreturn": 0.001,
+	"timewindowforexit": 600,
+	"ordertype": "limit",
+	"time_in_force": "gfd",
+	"trigger": "immediate"
+}

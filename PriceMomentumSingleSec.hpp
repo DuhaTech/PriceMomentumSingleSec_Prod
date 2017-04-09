@@ -17,8 +17,8 @@
 #include <assert.h>
 #include <mutex>
 #include <dirent.h>
-#include <unistd.h>//for system sleeping
-#include <ctime>// for clock
+#include <unistd.h>  //for system sleeping
+#include <ctime>  /for clock
 #include <cstdio>
 #include "MarketDataPoint.hpp"
 #include "BrokerUtil.hpp"
@@ -29,7 +29,6 @@
 #include "RHApiPy.hpp"
 #include "rapidjson/document.h"
 #include <atomic>
-#include <mutex>
 #include <thread>
 
 using namespace std;
@@ -41,13 +40,13 @@ using namespace rapidjson;
 
 namespace strategy
 {
-	//const long int UTCtoEST = 4*60*60;
 	typedef list<MarketDataPoint> MktDataPtr;
 
 	class PriceMomentumSingleSec:Strategy
 	{
 		private:
-			unsigned int bo_len; //number of data point to decide whether a break out exists
+		    //number of data point to decide whether a break out exists
+			unsigned int bo_len;
 			float chgspd_trg;
 			float chgdur_trg;
 			/*usually this strategy requires price continuously increases or decreases.
@@ -61,7 +60,7 @@ namespace strategy
 			 list<tuple<string, string, long int, float,bool>> entryVect;
 			 list<tuple<string, string, long int, float,bool>> cleanEntryVect;
 			 RHApiPy pyRobinAPI;
-			 RHApiCPP robinhoodAPI;
+			 Robinhood::RHApiCPP robinhoodAPI;
 			 //static std::mutex mutex_;
 
         protected:
@@ -82,9 +81,10 @@ namespace strategy
             string time_in_force;
             string trigger;
             float orderPrice;
+            std::mutex pythonMutex;
 
 		public:
-			PriceMomentumSingleSec();
+			PriceMomentumSingleSec(string ticker);
 			PriceMomentumSingleSec(string ticker,unsigned int bo_len,float chgspd_trg,float chgdur_trg, int negResponse_trg, float retTrg, int timeWindowForExit);
 			PriceMomentumSingleSec(const PriceMomentumSingleSec & obj);
 			~PriceMomentumSingleSec();
@@ -98,7 +98,7 @@ namespace strategy
 			void StgSta() override;
 			void Run() override;
 			void Output() override ;
-			void SetMktData() override;
+			void FetchMktData() override;
 			void CleanEntryPoint() override ;
 			void CleanMktData() override ;
 			void WriteDataToFile(string ticker);
@@ -106,6 +106,7 @@ namespace strategy
 			void ExecTrade() override;
             void OpenNewPosition();
             void CloseLongPosition();
+            void FetchMktData2();
 
 	};
 
