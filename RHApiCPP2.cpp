@@ -33,7 +33,7 @@ namespace Robinhood
         curl_easy_setopt(curl, CURLOPT_USERAGENT, "Mozilla/5.0");
         curl_easy_setopt(curl, CURLOPT_COOKIEJAR, "cookies.txt");
         curl_easy_setopt(curl, CURLOPT_COOKIEFILE, "cookies.txt");
-        curl_easy_setopt(curl, CURLOPT_AUTOREFERER, 1 );
+        curl_easy_setopt(curl, CURLOPT_AUTOREFERER, 1);
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
 

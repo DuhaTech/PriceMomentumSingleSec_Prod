@@ -2,19 +2,9 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="RHApiCPP2.cpp" open="1" top="1" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="RHApiCPP2.hpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3432" topLine="10" />
-		</Cursor>
-		<Folding>
-			<Collapse line="12" />
-			<Collapse line="48" />
-			<Collapse line="69" />
-		</Folding>
-	</File>
-	<File name="RHApiCPP2.hpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="656" topLine="0" />
+			<Cursor1 position="425" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="DrafCode.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -22,37 +12,53 @@
 			<Cursor1 position="1439" topLine="36" />
 		</Cursor>
 	</File>
-	<File name="StrategyExecution.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="RHApiCPP.hpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="236" topLine="0" />
+			<Cursor1 position="373" topLine="10" />
 		</Cursor>
 	</File>
-	<File name="PriceMomentumSingleSec.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="16015" topLine="243" />
+			<Cursor1 position="778" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="Strategy.hpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="427" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="OrderEngine.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="115" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="BrokerUtil.hpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="348" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="RHApiPy.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4755" topLine="0" />
 		</Cursor>
 		<Folding>
-			<Collapse line="66" />
-			<Collapse line="171" />
-			<Collapse line="186" />
-			<Collapse line="246" />
-			<Collapse line="255" />
-			<Collapse line="259" />
-			<Collapse line="280" />
-			<Collapse line="293" />
-			<Collapse line="298" />
-			<Collapse line="303" />
-			<Collapse line="310" />
-			<Collapse line="313" />
-			<Collapse line="537" />
-			<Collapse line="555" />
-			<Collapse line="559" />
-			<Collapse line="569" />
-			<Collapse line="585" />
-			<Collapse line="594" />
-			<Collapse line="598" />
-			<Collapse line="602" />
-			<Collapse line="606" />
+			<Collapse line="7" />
+			<Collapse line="36" />
+			<Collapse line="50" />
+			<Collapse line="56" />
+			<Collapse line="64" />
+			<Collapse line="70" />
+			<Collapse line="104" />
+			<Collapse line="133" />
+			<Collapse line="167" />
+		</Folding>
+	</File>
+	<File name="RHApiCPP2.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="394" topLine="3" />
+		</Cursor>
+		<Folding>
+			<Collapse line="73" />
 		</Folding>
 	</File>
 	<File name="MarketDataPoint.hpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -65,15 +71,57 @@
 			<Collapse line="12" />
 		</Folding>
 	</File>
-	<File name="BrokerUtil.hpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="BrokerUtil.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="348" topLine="0" />
+			<Cursor1 position="107" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Strategy.hpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="RawMarketDataPoint.hpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="427" topLine="0" />
+			<Cursor1 position="662" topLine="0" />
 		</Cursor>
+	</File>
+	<File name="MarketDataPoint.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="625" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="RHApiCPP.cpp" open="1" top="1" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5993" topLine="66" />
+		</Cursor>
+		<Folding>
+			<Collapse line="84" />
+		</Folding>
+	</File>
+	<File name="PriceMomentumSingleSec.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="16102" topLine="178" />
+		</Cursor>
+		<Folding>
+			<Collapse line="83" />
+			<Collapse line="135" />
+			<Collapse line="153" />
+			<Collapse line="157" />
+			<Collapse line="205" />
+			<Collapse line="223" />
+			<Collapse line="229" />
+			<Collapse line="315" />
+			<Collapse line="318" />
+			<Collapse line="353" />
+			<Collapse line="366" />
+			<Collapse line="369" />
+			<Collapse line="503" />
+			<Collapse line="514" />
+		</Folding>
+	</File>
+	<File name="PriceMomentumSingleSec.hpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1989" topLine="19" />
+		</Cursor>
+		<Folding>
+			<Collapse line="90" />
+		</Folding>
 	</File>
 	<File name="RawMarketDataPoint.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
@@ -88,75 +136,14 @@
 			<Collapse line="35" />
 		</Folding>
 	</File>
-	<File name="RHApiPy.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="StrategyExecution.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1184" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="7" />
-			<Collapse line="36" />
-			<Collapse line="104" />
-			<Collapse line="109" />
-			<Collapse line="117" />
-			<Collapse line="133" />
-			<Collapse line="141" />
-			<Collapse line="151" />
-			<Collapse line="167" />
-			<Collapse line="172" />
-			<Collapse line="180" />
-		</Folding>
-	</File>
-	<File name="PriceMomentumSingleSec.hpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1953" topLine="28" />
-		</Cursor>
-		<Folding>
-			<Collapse line="90" />
-		</Folding>
-	</File>
-	<File name="BrokerUtil.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="107" topLine="0" />
+			<Cursor1 position="236" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="RHApiCPP.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="RHApiPy.hpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="315" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="12" />
-			<Collapse line="145" />
-			<Collapse line="215" />
-		</Folding>
-	</File>
-	<File name="MarketDataPoint.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="625" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="RHApiCPP.hpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="161" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="RHApiPy.hpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="239" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="634" topLine="12" />
-		</Cursor>
-	</File>
-	<File name="RawMarketDataPoint.hpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="662" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="OrderEngine.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="115" topLine="0" />
+			<Cursor1 position="334" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

@@ -60,7 +60,7 @@ namespace strategy
 			 list<tuple<string, string, long int, float,bool>> entryVect;
 			 list<tuple<string, string, long int, float,bool>> cleanEntryVect;
 			 RHApiPy pyRobinAPI;
-			 Robinhood::RHApiCPP robinhoodAPI;
+			 RHApiCPP robinhoodAPI;
 			 //static std::mutex mutex_;
 
         protected:

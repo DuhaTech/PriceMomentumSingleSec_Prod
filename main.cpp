@@ -5,7 +5,6 @@
 #include <iostream>
 #include <memory>
 #include <fstream>
-#include "RHApiCPP2.hpp"
 #include "RHApiCPP.hpp"
 #include <Python.h>
 #include "RHApiPy.hpp"
@@ -23,11 +22,16 @@ using namespace rapidjson;
 
 int main(void)
 {
-RHApiCPP2 api;
-api.Init();
-std::cout<<api.GetQuote("AVP")<<"abc"<<endl;
+//    RHApiCPP api;
+//    api.Init();
+//    shared_ptr<Document> quotes (new rapidjson::Document());
+//    quotes.reset();
+//    quotes = api.GetQuote("CHK");
+//    std::cout<<quotes->operator[]("ask_price").GetString()<<std::endl;
 
-
+//    quotes.reset();
+//    quotes = api.GetQuote("NFLX");
+//    std::cout<<quotes->operator[]("ask_price").GetString()<<std::endl;
     const unsigned int bo_len = 10*60; //number of minutes during which the price has been moving in the same direction
     const float chgspd_trg = 0.007 / 15.00 / 60.00;
     const int negResponse_trg = 5;
@@ -38,29 +42,22 @@ std::cout<<api.GetQuote("AVP")<<"abc"<<endl;
 
 
     ifstream file;
-    file.open("tickerList.txt");
-    file.seekg(0,file.end);
-    int len = file.tellg();
-    file.seekg(0,file.beg);
-    char* buffer = new char[len];
-    file.read(buffer,len);
-    file.close();
-
     vector<string> tickerList;
-    Document content;
-    content.Parse(buffer);
-    string tickers = content["ticker"].GetString();
+    file.open("tickerList.txt");
+     std::string content( (std::istreambuf_iterator<char>(file) ),
+                       (std::istreambuf_iterator<char>()    ) );
+    Document document;
+    document.Parse(content.c_str());
+    string tickers = document["ticker"].GetString();
     boost::split(tickerList,tickers, boost::is_any_of(","));
-    delete[] buffer;
 
-    vector<PriceMomentumSingleSec> objList;
     vector<thread*> threadList;
 
-    //PriceMomentumSingleSec obj("AVP");
+    //PriceMomentumSingleSec obj("CHK");
     //usleep(4000000);
     //PriceMomentumSingleSec obj2("CHK");
     //obj2.Run();
-    //obj.Run();
+    //obj.FetchMktData();
     //std::thread t1(&PriceMomentumSingleSec::Run, &obj);
     //std::thread t2(&PriceMomentumSingleSec::Run, &obj2);
    // t1.join();
@@ -68,19 +65,19 @@ std::cout<<api.GetQuote("AVP")<<"abc"<<endl;
 
     for(auto it = tickerList.begin(); it != tickerList.end(); ++it)
     {
-        std::cout<<*it<<endl;
+        //std::cout<<*it<<endl;
         //PriceMomentumSingleSec* obj= new PriceMomentumSingleSec(*it);
         //objList.push_back(obj);
         //std::thread*  threadObj = new thread(&PriceMomentumSingleSec::Run, new PriceMomentumSingleSec(*it));
         //threadObj->join();
-        //threadList.push_back(new thread(&PriceMomentumSingleSec::Run, new PriceMomentumSingleSec(*it)));
+        threadList.push_back(new thread(&PriceMomentumSingleSec::Run, new PriceMomentumSingleSec(*it)));
         //threadObj->join();
         //std::cout<<"end"<<endl;
     }
 
     for(auto it = threadList.begin(); it != threadList.end();++it)
     {
-        //(*it)->join();
+        (*it)->join();
     }
 
     //vector<PriceMomentumSingleSec> objList;
