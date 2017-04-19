@@ -51,17 +51,18 @@ int main(void)
     string tickers = document["ticker"].GetString();
     boost::split(tickerList,tickers, boost::is_any_of(","));
 
-    vector<thread*> threadList;
-
-    //PriceMomentumSingleSec obj("CHK");
+    vector<shared_ptr<thread>> threadList;
+    vector<shared_ptr<PriceMomentumSingleSec>> strategyList;
+    RHApiCPP* obj = new RHApiCPP();
     //usleep(4000000);
-    //PriceMomentumSingleSec obj2("CHK");
+    PriceMomentumSingleSec* obj2 = new PriceMomentumSingleSec("NFLX");
     //obj2.Run();
     //obj.FetchMktData();
-    //std::thread t1(&PriceMomentumSingleSec::Run, &obj);
-    //std::thread t2(&PriceMomentumSingleSec::Run, &obj2);
-   // t1.join();
+    //std::thread t1(&RHApiCPP::GetQuote, obj,"BAC");
+    //std::thread t2(&PriceMomentumSingleSec::FetchMktData, obj2);
+   //t1.join();
     //t2.join();
+    int count = 0;
 
     for(auto it = tickerList.begin(); it != tickerList.end(); ++it)
     {
@@ -70,9 +71,13 @@ int main(void)
         //objList.push_back(obj);
         //std::thread*  threadObj = new thread(&PriceMomentumSingleSec::Run, new PriceMomentumSingleSec(*it));
         //threadObj->join();
-        threadList.push_back(new thread(&PriceMomentumSingleSec::Run, new PriceMomentumSingleSec(*it)));
-        //threadObj->join();
+        strategyList.push_back(make_shared<PriceMomentumSingleSec>(*it));
+        threadList.push_back(make_shared<thread>(&PriceMomentumSingleSec::Run,strategyList[count].get()));
+        //threadList.push_back(new thread(&PriceMomentumSingleSec::FetchMktData, new PriceMomentumSingleSec(*it)));
+        //threadList.push_back(threadObj);
+        //threadList[count]->join();
         //std::cout<<"end"<<endl;
+        count++;
     }
 
     for(auto it = threadList.begin(); it != threadList.end();++it)

@@ -8,7 +8,10 @@ namespace Robinhood
 //struct response RobinhoodAPI::resStr =  NULL;
 //CURLcode RobinhoodAPI::resCode =  CURLE_OK;
 
-
+RHApiCPP::RHApiCPP()
+{
+    Init();
+}
 void RHApiCPP::Init()
 {
     curl_global_init(CURL_GLOBAL_ALL);
@@ -38,13 +41,10 @@ void RHApiCPP::Init()
 
             /*separate the inintialization for curl_get */
 
-     quoteDetail = std::make_shared<Document>();
+    quoteDetail = std::make_shared<Document>();
     init_string(&resStr_Get);
     res_Get =  CURLE_OK;
     curl_Get = curl_easy_init();
-
-
-
 }
 
 RHApiCPP::~RHApiCPP()
@@ -198,6 +198,7 @@ std::unique_ptr<Document> RHApiCPP::CancelOrder(std::string orderID)
 }
 
 std::shared_ptr<Document> RHApiCPP::GetQuote(std::string ticker)
+//void RHApiCPP::GetQuote(std::string ticker)
 {
     //curl_easy_reset(curl_Get);
     init_string(&resStr_Get);
@@ -216,10 +217,10 @@ std::shared_ptr<Document> RHApiCPP::GetQuote(std::string ticker)
 #endif
 
     /* Perform the request, res will get the return code */
-    m.lock();
+    //m.lock();
     res_Get = curl_easy_perform(curl_Get);
-    m.unlock();
-    std::cout<<ticker<<std::endl;
+    //m.unlock();
+    //std::cout<<ticker<<std::endl;
 
     /* Check for errors */
     if(res_Get != CURLE_OK)
@@ -290,6 +291,10 @@ std::unique_ptr<Document> RHApiCPP::GetOrderStatus(std::string orderID)
     return orderStatus;
 }
 
+void RHApiCPP::test()
+{
+    std::cout<<"mark"<<std::endl;
+}
 }
 
 

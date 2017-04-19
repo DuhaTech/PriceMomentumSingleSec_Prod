@@ -39243,7 +39243,7 @@
 
 1484451444 /home/colin/Development/PriceMomentumSingleSec_Dev/BrokerUtil.hpp
 
-1491967163 source:/home/colin/Development/PriceMomentumSingleSec_Dev/main.cpp
+1492400996 source:/home/colin/Development/PriceMomentumSingleSec_Dev/main.cpp
 	<stdio.h>
 	<stdlib.h>
 	<cstring>
@@ -39288,7 +39288,7 @@
 
 1483323424 /home/colin/Development/PriceMomentumSingleSec_Dev/RawMarketDataPoint.hpp
 
-1491966975 source:/home/colin/Development/PriceMomentumSingleSec_Dev/PriceMomentumSingleSec.cpp
+1492396507 source:/home/colin/Development/PriceMomentumSingleSec_Dev/PriceMomentumSingleSec.cpp
 	"PriceMomentumSingleSec.hpp"
 
 1491965926 /home/colin/Development/PriceMomentumSingleSec_Dev/PriceMomentumSingleSec.hpp
@@ -39325,7 +39325,7 @@
 1487532721 /home/colin/Development/PriceMomentumSingleSec_Dev/Strategy.hpp
 	<string>
 
-1491967640 /home/colin/Development/PriceMomentumSingleSec_Dev/RHApiCPP.hpp
+1492384859 /home/colin/Development/PriceMomentumSingleSec_Dev/RHApiCPP.hpp
 	<stdio.h>
 	<stdlib.h>
 	<cstring>
@@ -39454,7 +39454,7 @@
 	<string>
 	<mutex>
 
-1491966734 source:/home/colin/Development/PriceMomentumSingleSec_Dev/RHApiCPP.cpp
+1492438326 source:/home/colin/Development/PriceMomentumSingleSec_Dev/RHApiCPP.cpp
 	"RHApiCPP.hpp"
 
 1491187321 source:/home/colin/Development/PriceMomentumSingleSec_Dev/RHApiPy.cpp

@@ -40,8 +40,11 @@ public:
     std::mutex m;
 
 public:
+    RHApiCPP();
+    void test();
     void Login();
     std::shared_ptr<Document> GetQuote(std::string symbol);
+    //void GetQuote(std::string symbol);
     std::unique_ptr<rapidjson::Document> PlaceOrder(std::string symbol,
             int quantity, std::string side, std::string type,
             std::string time_for_force, std::string trigger,

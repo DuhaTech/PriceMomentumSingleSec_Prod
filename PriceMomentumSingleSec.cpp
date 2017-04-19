@@ -434,6 +434,7 @@ void PriceMomentumSingleSec::FetchMktData()
     MarketDataPoint dataP;
     ofstream dataLog;
     dataLog.open("data.txt", ios::app);
+    //std::cout<<"mark"<<std::endl;
 
     while(1)
     {
@@ -443,7 +444,7 @@ void PriceMomentumSingleSec::FetchMktData()
         //std::lock_guard<std::mutex> lock(pythonMutex);
         //std::cout<<ticker<<std::endl;
         quotes = robinhoodAPI.GetQuote(ticker);
-            std::cout<<ticker<<quotes->operator[]("last_trade_price").GetString()<<std::endl;
+        //std::cout<<ticker<<": "<<quotes->operator[]("last_trade_price").GetString()<<std::endl;
         //std::cout<<"land mark"<<std::endl;
         //pythonMutex.unlock();
 
@@ -480,7 +481,7 @@ void PriceMomentumSingleSec::FetchMktData()
             dataP.SetHighLow(Neutral);
             mktData.push_back(dataP);
             lastTimestamp = curTimeStamp;
-            dataLog<<curTimeStamp<<";"<<curQuote<<";"<<0<<"\n";
+            dataLog<<ticker<<";"<<curTimeStamp<<";"<<curQuote<<";"<<0<<"\n";
             dataLog<<std::flush;
         }
 
@@ -517,7 +518,7 @@ void PriceMomentumSingleSec::FetchMktData()
                 lastCriticalTimestamp = curTimeStamp;
             }
             mktData.push_back(dataP);
-            dataLog<<lastTimestamp<<";"<<lastQuote<<";"<<lastIt->GetHighLow()<<"\n";
+            dataLog<<ticker<<";"<<lastTimestamp<<";"<<lastQuote<<";"<<lastIt->GetHighLow()<<"\n";
             dataLog<<std::flush;
             newData = false;
         }
@@ -525,7 +526,7 @@ void PriceMomentumSingleSec::FetchMktData()
         //Due to Robinhood constraint, only one data request can be made
         //every 40 seconds.
 
-        usleep(10000000);
+        usleep(30000000);
     }
     dataLog.close();
 }
