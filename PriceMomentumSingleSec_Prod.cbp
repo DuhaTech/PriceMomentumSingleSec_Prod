@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="PriceMomentumSingleSec_Dev" />
+		<Option title="PriceMomentumSingleSec_ProdV1" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/PriceMomentumSingleSec_Dev" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/PriceMomentumSingleSec_ProdV1" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -55,9 +55,32 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-std=c++14" />
+					<Add directory="../../../../usr/include" />
+					<Add directory="../PriceMomentumSingleSec" />
+					<Add directory="../../../../usr/include/python2.7" />
+					<Add directory="../../include/rapidjson/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add library="../../../../usr/lib/x86_64-linux-gnu/libcurl.so" />
+					<Add library="../../../../usr/lib/x86_64-linux-gnu/libssl.a" />
+					<Add library="../../../../usr/lib/x86_64-linux-gnu/libcrypt.a" />
+					<Add library="../../../../usr/lib/x86_64-linux-gnu/libboost_system.a" />
+					<Add library="../../../../usr/lib/x86_64-linux-gnu/libz.a" />
+					<Add library="../../../../usr/lib/x86_64-linux-gnu/libidn.a" />
+					<Add library="../../../../usr/lib/x86_64-linux-gnu/libgssapi_krb5.so.2" />
+					<Add library="../../../../usr/lib/x86_64-linux-gnu/libnss3.so" />
+					<Add library="../../../../usr/lib/x86_64-linux-gnu/libnss_compat.so" />
+					<Add library="../../../../usr/lib/x86_64-linux-gnu/libnss_dns.so" />
+					<Add library="../../../../usr/lib/x86_64-linux-gnu/libnss_files.so" />
+					<Add library="../../../../usr/lib/x86_64-linux-gnu/libnss_hesiod.so" />
+					<Add library="../../../../usr/lib/x86_64-linux-gnu/libnss_nis.so" />
+					<Add library="../../../../usr/lib/x86_64-linux-gnu/libnssutil3.so" />
+					<Add library="../../../../usr/lib/x86_64-linux-gnu/libc.so" />
+					<Add library="../../../../usr/lib/x86_64-linux-gnu/libpython2.7.so" />
+					<Add library="../../../../usr/lib/x86_64-linux-gnu/libpthread.so" />
+					<Add library="../../../../usr/lib/x86_64-linux-gnu/libboost_thread.so" />
 				</Linker>
 			</Target>
 		</Build>
@@ -83,6 +106,8 @@
 		<Unit filename="RawMarketDataPoint.hpp" />
 		<Unit filename="Strategy.hpp" />
 		<Unit filename="StrategyExecution.hpp" />
+		<Unit filename="Utility.cpp" />
+		<Unit filename="Utility.hpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

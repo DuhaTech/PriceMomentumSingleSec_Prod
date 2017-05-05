@@ -39238,12 +39238,12 @@
 1483416920 source:/home/colin/Production/PriceMomentumSingleSec/RawMarketDataPoint.cpp
 	"RawMarketDataPoint.hpp"
 
-1480889266 source:/home/colin/Development/PriceMomentumSingleSec_Dev/BrokerUtil.cpp
+1493089866 source:/home/colin/Development/PriceMomentumSingleSec_Dev/BrokerUtil.cpp
 	"BrokerUtil.hpp"
 
 1484451444 /home/colin/Development/PriceMomentumSingleSec_Dev/BrokerUtil.hpp
 
-1492400996 source:/home/colin/Development/PriceMomentumSingleSec_Dev/main.cpp
+1493089843 source:/home/colin/Development/PriceMomentumSingleSec_Dev/main.cpp
 	<stdio.h>
 	<stdlib.h>
 	<cstring>
@@ -39288,10 +39288,10 @@
 
 1483323424 /home/colin/Development/PriceMomentumSingleSec_Dev/RawMarketDataPoint.hpp
 
-1492396507 source:/home/colin/Development/PriceMomentumSingleSec_Dev/PriceMomentumSingleSec.cpp
+1493089249 source:/home/colin/Development/PriceMomentumSingleSec_Dev/PriceMomentumSingleSec.cpp
 	"PriceMomentumSingleSec.hpp"
 
-1491965926 /home/colin/Development/PriceMomentumSingleSec_Dev/PriceMomentumSingleSec.hpp
+1493087056 /home/colin/Development/PriceMomentumSingleSec_Dev/PriceMomentumSingleSec.hpp
 	<vector>
 	<deque>
 	<tuple>
@@ -39325,7 +39325,7 @@
 1487532721 /home/colin/Development/PriceMomentumSingleSec_Dev/Strategy.hpp
 	<string>
 
-1492384859 /home/colin/Development/PriceMomentumSingleSec_Dev/RHApiCPP.hpp
+1493001009 /home/colin/Development/PriceMomentumSingleSec_Dev/RHApiCPP.hpp
 	<stdio.h>
 	<stdlib.h>
 	<cstring>
@@ -39454,7 +39454,7 @@
 	<string>
 	<mutex>
 
-1492438326 source:/home/colin/Development/PriceMomentumSingleSec_Dev/RHApiCPP.cpp
+1493089249 source:/home/colin/Development/PriceMomentumSingleSec_Dev/RHApiCPP.cpp
 	"RHApiCPP.hpp"
 
 1491187321 source:/home/colin/Development/PriceMomentumSingleSec_Dev/RHApiPy.cpp
@@ -39475,4 +39475,464 @@
 
 1491758319 source:/home/colin/Development/PriceMomentumSingleSec_Dev/RHApiCPP2.cpp
 	"RHApiCPP2.hpp"
+
+1493089866 source:/home/colin/Production/PriceMomentumSingleSec_Prod/BrokerUtil.cpp
+	"BrokerUtil.hpp"
+
+1484451444 /home/colin/Production/PriceMomentumSingleSec_Prod/BrokerUtil.hpp
+
+1493774215 source:/home/colin/Production/PriceMomentumSingleSec_Prod/main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<cstring>
+	<curl/curl.h>
+	<iostream>
+	<memory>
+	<fstream>
+	"RHApiCPP.hpp"
+	<Python.h>
+	"RHApiPy.hpp"
+	<unistd.h>
+	<cmath>
+	<boost/algorithm/string/regex.hpp>
+	<boost/algorithm/string.hpp>
+	"PriceMomentumSingleSec.hpp"
+	<thread>
+
+1493001009 /home/colin/Production/PriceMomentumSingleSec_Prod/RHApiCPP.hpp
+	<stdio.h>
+	<stdlib.h>
+	<cstring>
+	<curl/curl.h>
+	<iostream>
+	<memory>
+	<fstream>
+	<boost/algorithm/string/regex.hpp>
+	<boost/algorithm/string.hpp>
+	<rapidjson/document.h>
+	<mutex>
+
+1483901520 /home/colin/Production/PriceMomentumSingleSec_Prod/include/rapidjson/document.h
+	"reader.h"
+	"internal/meta.h"
+	"internal/strfunc.h"
+	"memorystream.h"
+	"encodedstream.h"
+	<new>
+	<limits>
+	<iterator>
+	<utility>
+
+1483901520 /home/colin/Production/PriceMomentumSingleSec_Prod/include/rapidjson/reader.h
+	"allocators.h"
+	"stream.h"
+	"encodedstream.h"
+	"internal/meta.h"
+	"internal/stack.h"
+	"internal/strtod.h"
+	<limits>
+	<intrin.h>
+	<nmmintrin.h>
+	<emmintrin.h>
+	<stdexcept>
+	"rapidjson/error/error.h"
+	"rapidjson/reader.h"
+	"error/error.h"
+
+1483901520 /home/colin/Production/PriceMomentumSingleSec_Prod/include/rapidjson/allocators.h
+	"rapidjson.h"
+
+1483901520 /home/colin/Production/PriceMomentumSingleSec_Prod/include/rapidjson/rapidjson.h
+	<cstdlib>
+	<cstring>
+	"rapidjson/..."
+	<string>
+	"msinttypes/stdint.h"
+	"msinttypes/inttypes.h"
+	<stdint.h>
+	<inttypes.h>
+	<endian.h>
+	"rapidjson/..."
+	<cassert>
+
+1483901520 /home/colin/Production/PriceMomentumSingleSec_Prod/include/rapidjson/msinttypes/stdint.h
+	<stdint.h>
+	<limits.h>
+	<wchar.h>
+
+1483901520 /home/colin/Production/PriceMomentumSingleSec_Prod/include/rapidjson/msinttypes/inttypes.h
+	"stdint.h"
+	<inttypes.h>
+
+1483901520 /home/colin/Production/PriceMomentumSingleSec_Prod/include/rapidjson/stream.h
+	"rapidjson.h"
+	"encodings.h"
+
+1483901520 /home/colin/Production/PriceMomentumSingleSec_Prod/include/rapidjson/encodings.h
+	"rapidjson.h"
+
+1483901520 /home/colin/Production/PriceMomentumSingleSec_Prod/include/rapidjson/encodedstream.h
+	"stream.h"
+	"memorystream.h"
+
+1483901520 /home/colin/Production/PriceMomentumSingleSec_Prod/include/rapidjson/memorystream.h
+	"stream.h"
+
+1483901520 /home/colin/Production/PriceMomentumSingleSec_Prod/include/rapidjson/internal/meta.h
+	"../rapidjson.h"
+	<type_traits>
+
+1483901520 /home/colin/Production/PriceMomentumSingleSec_Prod/include/rapidjson/internal/stack.h
+	"../allocators.h"
+	"swap.h"
+
+1483901520 /home/colin/Production/PriceMomentumSingleSec_Prod/include/rapidjson/internal/swap.h
+	"../rapidjson.h"
+
+1483901520 /home/colin/Production/PriceMomentumSingleSec_Prod/include/rapidjson/internal/strtod.h
+	"ieee754.h"
+	"biginteger.h"
+	"diyfp.h"
+	"pow10.h"
+
+1483901520 /home/colin/Production/PriceMomentumSingleSec_Prod/include/rapidjson/internal/ieee754.h
+	"../rapidjson.h"
+
+1483901520 /home/colin/Production/PriceMomentumSingleSec_Prod/include/rapidjson/internal/biginteger.h
+	"../rapidjson.h"
+	<intrin.h>
+
+1483901520 /home/colin/Production/PriceMomentumSingleSec_Prod/include/rapidjson/internal/diyfp.h
+	"../rapidjson.h"
+	<intrin.h>
+
+1483901520 /home/colin/Production/PriceMomentumSingleSec_Prod/include/rapidjson/internal/pow10.h
+	"../rapidjson.h"
+
+1483901520 /home/colin/Production/PriceMomentumSingleSec_Prod/include/rapidjson/error/error.h
+	"../rapidjson.h"
+
+1483901520 /home/colin/Production/PriceMomentumSingleSec_Prod/include/rapidjson/internal/strfunc.h
+	"../stream.h"
+
+1491184976 /home/colin/Production/PriceMomentumSingleSec_Prod/RHApiPy.hpp
+	<memory>
+	<iostream>
+	<Python.h>
+	<boost/algorithm/string.hpp>
+	<vector>
+	<string>
+	<boost/algorithm/string/regex.hpp>
+	"RHApiPy.hpp"
+	"rapidjson/document.h"
+	<string>
+	<mutex>
+
+1493612901 /home/colin/Production/PriceMomentumSingleSec_Prod/PriceMomentumSingleSec.hpp
+	<vector>
+	<deque>
+	<tuple>
+	<iterator>
+	<memory>
+	<iostream>
+	<fstream>
+	<boost/algorithm/string.hpp>
+	<boost/algorithm/string/regex.hpp>
+	<boost/algorithm/string/regex.hpp>
+	<string>
+	<time.h>
+	<limits>
+	<assert.h>
+	<mutex>
+	<dirent.h>
+	<unistd.h>
+	<ctime>
+	<cstdio>
+	"MarketDataPoint.hpp"
+	"BrokerUtil.hpp"
+	"Strategy.hpp"
+	"RHApiCPP.hpp"
+	"RawMarketDataPoint.hpp"
+	"BrokerUtil.hpp"
+	"RHApiPy.hpp"
+	"rapidjson/document.h"
+	<atomic>
+	<thread>
+	"Utility.hpp"
+
+1479000849 /home/colin/Production/PriceMomentumSingleSec_Prod/MarketDataPoint.hpp
+	<string>
+
+1487532721 /home/colin/Production/PriceMomentumSingleSec_Prod/Strategy.hpp
+	<string>
+
+1483323424 /home/colin/Production/PriceMomentumSingleSec_Prod/RawMarketDataPoint.hpp
+
+1479000813 source:/home/colin/Production/PriceMomentumSingleSec_Prod/MarketDataPoint.cpp
+	"MarketDataPoint.hpp"
+
+1493612937 source:/home/colin/Production/PriceMomentumSingleSec_Prod/PriceMomentumSingleSec.cpp
+	"PriceMomentumSingleSec.hpp"
+
+1483416920 source:/home/colin/Production/PriceMomentumSingleSec_Prod/RawMarketDataPoint.cpp
+	"RawMarketDataPoint.hpp"
+
+1493774279 source:/home/colin/Production/PriceMomentumSingleSec_Prod/RHApiCPP.cpp
+	"RHApiCPP.hpp"
+
+1491758319 source:/home/colin/Production/PriceMomentumSingleSec_Prod/RHApiCPP2.cpp
+	"RHApiCPP2.hpp"
+
+1491190877 /home/colin/Production/PriceMomentumSingleSec_Prod/RHApiCPP2.hpp
+	<stdio.h>
+	<stdlib.h>
+	<cstring>
+	<curl/curl.h>
+	<iostream>
+	<memory>
+	<fstream>
+	<boost/algorithm/string/regex.hpp>
+	<boost/algorithm/string.hpp>
+	<rapidjson/document.h>
+	"RHApiCPP.hpp"
+
+1491187321 source:/home/colin/Production/PriceMomentumSingleSec_Prod/RHApiPy.cpp
+	"RHApiPy.hpp"
+
+1493089866 source:/home/colin/Production/PriceMomentumSingleSec_ProdV1/BrokerUtil.cpp
+	"BrokerUtil.hpp"
+
+1484451444 /home/colin/Production/PriceMomentumSingleSec_ProdV1/BrokerUtil.hpp
+
+1493774215 source:/home/colin/Production/PriceMomentumSingleSec_ProdV1/main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<cstring>
+	<curl/curl.h>
+	<iostream>
+	<memory>
+	<fstream>
+	"RHApiCPP.hpp"
+	<Python.h>
+	"RHApiPy.hpp"
+	<unistd.h>
+	<cmath>
+	<boost/algorithm/string/regex.hpp>
+	<boost/algorithm/string.hpp>
+	"PriceMomentumSingleSec.hpp"
+	<thread>
+
+1493001009 /home/colin/Production/PriceMomentumSingleSec_ProdV1/RHApiCPP.hpp
+	<stdio.h>
+	<stdlib.h>
+	<cstring>
+	<curl/curl.h>
+	<iostream>
+	<memory>
+	<fstream>
+	<boost/algorithm/string/regex.hpp>
+	<boost/algorithm/string.hpp>
+	<rapidjson/document.h>
+	<mutex>
+
+1483901520 /home/colin/include/rapidjson/include/rapidjson/document.h
+	"reader.h"
+	"internal/meta.h"
+	"internal/strfunc.h"
+	"memorystream.h"
+	"encodedstream.h"
+	<new>
+	<limits>
+	<iterator>
+	<utility>
+
+1483901520 /home/colin/include/rapidjson/include/rapidjson/reader.h
+	"allocators.h"
+	"stream.h"
+	"encodedstream.h"
+	"internal/meta.h"
+	"internal/stack.h"
+	"internal/strtod.h"
+	<limits>
+	<intrin.h>
+	<nmmintrin.h>
+	<emmintrin.h>
+	<stdexcept>
+	"rapidjson/error/error.h"
+	"rapidjson/reader.h"
+	"error/error.h"
+
+1483901520 /home/colin/include/rapidjson/include/rapidjson/allocators.h
+	"rapidjson.h"
+
+1483901520 /home/colin/include/rapidjson/include/rapidjson/rapidjson.h
+	<cstdlib>
+	<cstring>
+	"rapidjson/..."
+	<string>
+	"msinttypes/stdint.h"
+	"msinttypes/inttypes.h"
+	<stdint.h>
+	<inttypes.h>
+	<endian.h>
+	"rapidjson/..."
+	<cassert>
+
+1483901520 /home/colin/include/rapidjson/include/rapidjson/msinttypes/stdint.h
+	<stdint.h>
+	<limits.h>
+	<wchar.h>
+
+1483901520 /home/colin/include/rapidjson/include/rapidjson/msinttypes/inttypes.h
+	"stdint.h"
+	<inttypes.h>
+
+1483901520 /home/colin/include/rapidjson/include/rapidjson/stream.h
+	"rapidjson.h"
+	"encodings.h"
+
+1483901520 /home/colin/include/rapidjson/include/rapidjson/encodings.h
+	"rapidjson.h"
+
+1483901520 /home/colin/include/rapidjson/include/rapidjson/encodedstream.h
+	"stream.h"
+	"memorystream.h"
+
+1483901520 /home/colin/include/rapidjson/include/rapidjson/memorystream.h
+	"stream.h"
+
+1483901520 /home/colin/include/rapidjson/include/rapidjson/internal/meta.h
+	"../rapidjson.h"
+	<type_traits>
+
+1483901520 /home/colin/include/rapidjson/include/rapidjson/internal/stack.h
+	"../allocators.h"
+	"swap.h"
+
+1483901520 /home/colin/include/rapidjson/include/rapidjson/internal/swap.h
+	"../rapidjson.h"
+
+1483901520 /home/colin/include/rapidjson/include/rapidjson/internal/strtod.h
+	"ieee754.h"
+	"biginteger.h"
+	"diyfp.h"
+	"pow10.h"
+
+1483901520 /home/colin/include/rapidjson/include/rapidjson/internal/ieee754.h
+	"../rapidjson.h"
+
+1483901520 /home/colin/include/rapidjson/include/rapidjson/internal/biginteger.h
+	"../rapidjson.h"
+	<intrin.h>
+
+1483901520 /home/colin/include/rapidjson/include/rapidjson/internal/diyfp.h
+	"../rapidjson.h"
+	<intrin.h>
+
+1483901520 /home/colin/include/rapidjson/include/rapidjson/internal/pow10.h
+	"../rapidjson.h"
+
+1483901520 /home/colin/include/rapidjson/include/rapidjson/error/error.h
+	"../rapidjson.h"
+
+1483901520 /home/colin/include/rapidjson/include/rapidjson/internal/strfunc.h
+	"../stream.h"
+
+1491184976 /home/colin/Production/PriceMomentumSingleSec_ProdV1/RHApiPy.hpp
+	<memory>
+	<iostream>
+	<Python.h>
+	<boost/algorithm/string.hpp>
+	<vector>
+	<string>
+	<boost/algorithm/string/regex.hpp>
+	"RHApiPy.hpp"
+	"rapidjson/document.h"
+	<string>
+	<mutex>
+
+1493612901 /home/colin/Production/PriceMomentumSingleSec_ProdV1/PriceMomentumSingleSec.hpp
+	<vector>
+	<deque>
+	<tuple>
+	<iterator>
+	<memory>
+	<iostream>
+	<fstream>
+	<boost/algorithm/string.hpp>
+	<boost/algorithm/string/regex.hpp>
+	<boost/algorithm/string/regex.hpp>
+	<string>
+	<time.h>
+	<limits>
+	<assert.h>
+	<mutex>
+	<dirent.h>
+	<unistd.h>
+	<ctime>
+	<cstdio>
+	"MarketDataPoint.hpp"
+	"BrokerUtil.hpp"
+	"Strategy.hpp"
+	"RHApiCPP.hpp"
+	"RawMarketDataPoint.hpp"
+	"BrokerUtil.hpp"
+	"RHApiPy.hpp"
+	"rapidjson/document.h"
+	<atomic>
+	<thread>
+	"Utility.hpp"
+
+1479000849 /home/colin/Production/PriceMomentumSingleSec_ProdV1/MarketDataPoint.hpp
+	<string>
+
+1487532721 /home/colin/Production/PriceMomentumSingleSec_ProdV1/Strategy.hpp
+	<string>
+
+1483323424 /home/colin/Production/PriceMomentumSingleSec_ProdV1/RawMarketDataPoint.hpp
+
+1479000813 source:/home/colin/Production/PriceMomentumSingleSec_ProdV1/MarketDataPoint.cpp
+	"MarketDataPoint.hpp"
+
+1483416920 source:/home/colin/Production/PriceMomentumSingleSec_ProdV1/RawMarketDataPoint.cpp
+	"RawMarketDataPoint.hpp"
+
+1493774279 source:/home/colin/Production/PriceMomentumSingleSec_ProdV1/RHApiCPP.cpp
+	"RHApiCPP.hpp"
+
+1491758319 source:/home/colin/Production/PriceMomentumSingleSec_ProdV1/RHApiCPP2.cpp
+	"RHApiCPP2.hpp"
+
+1491190877 /home/colin/Production/PriceMomentumSingleSec_ProdV1/RHApiCPP2.hpp
+	<stdio.h>
+	<stdlib.h>
+	<cstring>
+	<curl/curl.h>
+	<iostream>
+	<memory>
+	<fstream>
+	<boost/algorithm/string/regex.hpp>
+	<boost/algorithm/string.hpp>
+	<rapidjson/document.h>
+	"RHApiCPP.hpp"
+
+1491187321 source:/home/colin/Production/PriceMomentumSingleSec_ProdV1/RHApiPy.cpp
+	"RHApiPy.hpp"
+
+1493611547 /home/colin/Production/PriceMomentumSingleSec_ProdV1/Utility.hpp
+	<ctime>
+	<string>
+
+1493612937 source:/home/colin/Production/PriceMomentumSingleSec_ProdV1/PriceMomentumSingleSec.cpp
+	"PriceMomentumSingleSec.hpp"
+
+1493612980 source:/home/colin/Production/PriceMomentumSingleSec_ProdV1/Utility.cpp
+	"Utility.hpp"
+
+1493611547 /home/colin/Production/PriceMomentumSingleSec_Prod/Utility.hpp
+	<ctime>
+	<string>
+
+1493612980 source:/home/colin/Production/PriceMomentumSingleSec_Prod/Utility.cpp
+	"Utility.hpp"
 

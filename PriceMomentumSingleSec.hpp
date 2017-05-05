@@ -30,6 +30,7 @@
 #include "rapidjson/document.h"
 #include <atomic>
 #include <thread>
+#include "Utility.hpp"
 
 using namespace std;
 using namespace ds;
@@ -37,6 +38,7 @@ using namespace util;
 using namespace strategy;
 using namespace Robinhood;
 using namespace rapidjson;
+using namespace utility;
 
 namespace strategy
 {
@@ -61,6 +63,9 @@ namespace strategy
 			 list<tuple<string, string, long int, float,bool>> cleanEntryVect;
 			 RHApiPy pyRobinAPI;
 			 RHApiCPP robinhoodAPI;
+			 Utility utilObj;
+			 ofstream tradeLog;
+			 string logFilePath;
 			 //static std::mutex mutex_;
 
         protected:
@@ -75,7 +80,8 @@ namespace strategy
             string instrumentId;
             float entryQuant;
             double entryPrice;
-            PositionStatus posStatus;
+            float exitPrice;
+            //PositionStatus posStatus;
             string side;
             string type;
             string time_in_force;
@@ -84,6 +90,7 @@ namespace strategy
             std::mutex pythonMutex;
 
 		public:
+		    PositionStatus posStatus;
 			PriceMomentumSingleSec(string ticker);
 			PriceMomentumSingleSec(string ticker,unsigned int bo_len,float chgspd_trg,float chgdur_trg, int negResponse_trg, float retTrg, int timeWindowForExit);
 			PriceMomentumSingleSec(const PriceMomentumSingleSec & obj);

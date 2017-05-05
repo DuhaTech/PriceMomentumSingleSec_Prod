@@ -6,5 +6,6 @@
 	"timewindowforexit": 600,
 	"ordertype": "limit",
 	"time_in_force": "gfd",
-	"trigger": "immediate"
+	"trigger": "immediate",
+	"logFilePath": "../log/tradeLog.txt"
 }
